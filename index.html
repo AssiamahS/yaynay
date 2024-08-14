@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ticketing System</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Ticketing System</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ticketModal">
+      Submit a Ticket
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="ticketModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ticketModalLabel">Submit a Ticket</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="ticketForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <br>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+            <br>
+            <label for="streetAddress">Street:</label>
+            <input type="text" id="streetAddress" name="streetAddress" required>
+            <br>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+            <br>
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+            <br>
+            <label for="zipCode">ZIP Code:</label>
+            <input type="text" id="zipCode" name="zipCode" required>
+            <br>
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" required>
+            <br>
+            <label for="serviceType">Service Type:</label>
+            <input type="text" id="serviceType" name="serviceType" required>
+            <br>
+            <label for="issue">Issue:</label>
+            <textarea id="issue" name="issue" required></textarea>
+            <br>
+            <label for="upload">Upload:</label>
+            <input type="file" id="upload" name="upload" required>
+            <br>
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+              
+              <input type="submit" value="Submit"> 
+            </div>
+          </form>
+           </div>
+      
+      </div>
+    </div>
+  </div>
+
+  <script src="ticket.js"></script>
+  <script>
+    const ticketForm = document.querySelector('#ticketForm');
+    ticketForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const firstName = document.querySelector('#firstName').value;
+      const lastName = document.querySelector('#lastName').value;
+      const email = document.querySelector('#email').value;
+      const streetAddress = document.querySelector('#streetAddress').value;
+      const city = document.querySelector('#city').value;
+      const state = document.querySelector('#state').value;
+      const zipCode = document.querySelector('#zipCode').value;
+      const phoneNumber = document.querySelector('#phoneNumber').value;
+      const serviceType = document.querySelector('#serviceType').value;
+      const issue = document.querySelector('#issue').value;
+
+      const ticket = createTicket(firstName, lastName, email, streetAddress, city, state, zipCode, phoneNumber, serviceType, issue);
+      localStorage.setItem('ticket', JSON.stringify(ticket));
+      window.location.href = 'ticket.html';
+    });
+    </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="./ticket.js"></script>
+</body>
+</html>

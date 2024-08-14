@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ticket Details</title>
+</head>
+
+<body>
+  <h1>Ticket Details</h1>
+  <div id="ticketDetails"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const ticket = JSON.parse(localStorage.getItem('ticket'));
+
+      if (ticket) {
+        const ticketDetailsDiv = document.querySelector('#ticketDetails');
+        ticketDetailsDiv.innerHTML = `
+          <p><strong>First Name:</strong> ${ticket.firstName}</p>
+          <p><strong>Last Name:</strong> ${ticket.lastName}</p>
+          <p><strong>Email:</strong> ${ticket.email}</p>
+          <p><strong>Street Address:</strong> ${ticket.streetAddress}</p>
+          <p><strong>City:</strong> ${ticket.city}</p>
+          <p><strong>State:</strong> ${ticket.state}</p>
+          <p><strong>ZIP Code:</strong> ${ticket.zipCode}</p>
+          <p><strong>Phone Number:</strong> ${ticket.phoneNumber}</p>
+          <p><strong>Service Type:</strong> ${ticket.serviceType}</p>
+          <p><strong>Issue:</strong> ${ticket.issue}</p>
+        `;
+
+        if (ticket.fileData) {
+          const img = document.createElement('img');
+          img.src = ticket.fileData;
+          img.style.maxWidth = '500px'; // Adjust as needed 
+          ticketDetailsDiv.appendChild(img);
+        }
+      } else {
+        ticketDetailsDiv.innerHTML = '<p>No ticket found.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
